@@ -39,7 +39,8 @@ colnames(ham3) <- c("PIM +/- (60)",
                     "Corsi + (60)", 
                     "Corsi - (60)", 
                     "Individual Corsi (60)", 
-                    "FO %", "Game Score")
+                    "FO %", 
+                    "Game Score")
 
 # Reverse Corsi Against so that best players are blue and worst are red
 ham3$`Corsi - (60)` <- -1 * ham3$`Corsi - (60)`
@@ -50,12 +51,15 @@ ham4 <- scale(ham3[,c(1:8)])
 hammatrix <- data.matrix(ham4)
 meltedmatrix <- melt(hammatrix[,1:7])
 
+# Picks color palette (will be Red to White to Blue)
 hm.palette <- colorRampPalette(brewer.pal(11, "RdBu"), space = "Lab")
 
+# Creates the heatmap
 heatmap <- ggplot(meltedmatrix, aes(x = Var2, y = Var1, fill = value)) +
   geom_tile() + 
   coord_equal(expand = TRUE) + 
-  labs(title = "Hamilton 2016-17 Heatmap", subtitle = "Sorted by Highest Average Game Score") +
+  labs(title = "Hamilton 2016-17 Heatmap", subtitle = "Sorted by Highest Average Game Score") + 
+  scale_fill_gradientn(colors = hm.palette(100)) +
   theme(plot.title = element_text(hjust = 0.5, size = 22, face = "bold", family = "mono"), 
         axis.text.x = element_text(size = 11, angle = 45, hjust = 1, face = "bold", family = "mono", margin = margin(6,0,0,0)),
         axis.text.y = element_text(size = 11, face = "bold", family = "mono"), 
@@ -65,6 +69,6 @@ heatmap <- ggplot(meltedmatrix, aes(x = Var2, y = Var1, fill = value)) +
         plot.margin = unit(c(5, 0, 5, 0), "mm"), 
         plot.subtitle = element_text(size = 13, face = "bold", family = "mono", hjust = 0.5, margin = margin(0,0,30,0)))
 
-
-heatmap + scale_fill_gradientn(colors = hm.palette(100))
+# Plots the heatmap
+heatmap
 
