@@ -4,9 +4,7 @@ library(ggplot2)
 library(RColorBrewer)
 library(reshape2)
 
-
-ham <- read.csv("Hamilton 16-17 Stats.csv",
-                header = TRUE, stringsAsFactors = FALSE)
+ham <- read.csv("Hamilton 16-17 Stats.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Delete players with not enough GP
 ham2 <- ham[-c(4:7),]
