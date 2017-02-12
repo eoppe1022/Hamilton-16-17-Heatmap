@@ -64,7 +64,7 @@ heatmap <- ggplot(meltedmatrix, aes(x = Var2, y = Var1, fill = value)) +
         axis.ticks.y = element_blank(),
         axis.title = element_blank(), 
         legend.position = "none", 
-        plot.margin = unit(c(1, 0, 5, 0), "mm"), 
+        plot.margin = unit(c(5, 0, 5, 0), "mm"), 
         plot.subtitle = element_text(size = 13, face = "bold", family = "mono", hjust = 0.5, margin = margin(0,0,30,0)))
 
 
