@@ -59,14 +59,16 @@ heatmap <- ggplot(meltedmatrix, aes(x = Var2, y = Var1, fill = value)) +
   geom_tile() + 
   coord_equal(expand = TRUE) + 
   labs(title = "Hamilton 2016-17 Heatmap", subtitle = "Sorted by Highest Average Game Score") + 
-  scale_fill_gradientn(colors = hm.palette(100)) +
+  scale_fill_gradientn(colors = hm.palette(100), breaks = c(1.5, -1.5), labels = paste(c("Better", "Worse"))) +
   theme(plot.title = element_text(hjust = 0.5, size = 22, face = "bold", family = "mono"), 
-        axis.text.x = element_text(size = 11, angle = 45, hjust = 1, face = "bold", family = "mono", margin = margin(6,0,0,0)),
-        axis.text.y = element_text(size = 11, face = "bold", family = "mono"), 
+        axis.text.x = element_text(size = 12, angle = 50, hjust = 1, face = "bold", family = "mono", margin = margin(6,0,3,0)),
+        axis.text.y = element_text(size = 12, face = "bold", family = "mono"), 
         axis.ticks.y = element_blank(),
         axis.title = element_blank(), 
-        legend.position = "none", 
-        plot.margin = unit(c(5, 0, 5, 0), "mm"), 
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, face = "bold", family = "mono", margin = margin(0, 40, 0, 0)),
+        legend.margin = margin(0, 0, 0, 30),
+        plot.margin = unit(c(5, 0, 8, 0), "mm"), 
         plot.subtitle = element_text(size = 13, face = "bold", family = "mono", hjust = 0.5, margin = margin(0,0,30,0)))
 
 # Plots the heatmap
